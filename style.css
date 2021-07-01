@@ -1,0 +1,31 @@
+html {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background: ghostwhite;
+}
+
+h1 {
+  color: salmon;
+}
+
+h2 {
+  color: seagreen;
+}
+input {
+  padding: 1em 0.3em;
+}
+
+button {
+  background: steelblue;
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 1em 2.5em;
+  cursor: pointer;
+}
+
+button:hover {
+  background: slategray;
+}
