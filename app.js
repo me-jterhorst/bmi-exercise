@@ -33,10 +33,10 @@ FORM.addEventListener("submit", (event) => {
   };
 
   createEntry(obj);
-
   createLastLine();
 });
 
+// CREATE FUNCTIONS
 function createEntry(object) {
   const LIST_ELEMENT = document.createElement("li");
   const NAME_DIV = document.createElement("div");
@@ -72,6 +72,19 @@ function createEntry(object) {
   TABLE.append(LIST_ELEMENT);
 }
 
+function createLastLine() {
+  const LAST_LINE = document.createElement("li");
+  const RESET_BTN = document.createElement("button");
+
+  RESET_BTN.classList.add("btn--reset");
+  RESET_BTN.textContent = "reset";
+  RESET_BTN.addEventListener("click", resetList);
+
+  LAST_LINE.classList.add("last-line");
+  LAST_LINE.append(RESET_BTN);
+  TABLE.append(LAST_LINE);
+}
+
 // HELPER FUNCTIONS
 function colorVerdict(div, weightcase) {
   switch (weightcase) {
@@ -101,7 +114,17 @@ function deleteLine(event) {
   event.target.parentNode.remove();
 }
 
-function createLastLine() {
-  const LAST_LINE = document.createElement("li");
-  const RESET_BTN = document.createElement("button");
+// BUTTON FUNCTIONS
+function resetList(event) {
+  event.preventDefault();
+  TABLE.textContent = "";
+}
+
+function removeLastLine() {
+  const RESET_LINE = document.querySelector(".last-line");
+  if (!RESET_LINE) {
+    return;
+  }
+
+  RESET_LINE.remove();
 }
