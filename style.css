@@ -29,3 +29,33 @@ button {
 button:hover {
   background: slategray;
 }
+
+.underweight,
+.obese {
+  color: crimson;
+}
+
+.normal {
+  color: springgreen;
+}
+
+.overweight {
+  color: sandybrown;
+}
+
+.table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+}
+
+li {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+li:nth-of-type(2n) {
+  background: snow;
+}
