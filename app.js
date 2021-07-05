@@ -3,7 +3,6 @@ const HEIGHT = document.querySelector("#bodyHeight");
 const WEIGHT = document.querySelector("#bodyWeight");
 const FORM = document.querySelector("form");
 const RESULT_DISPLAY = document.querySelector("h2");
-const RESULT_DISPLAY_TEXT = RESULT_DISPLAY.textContent;
 const TABLE = document.querySelector(".table");
 
 let result = 0;
@@ -11,7 +10,7 @@ let arr = [];
 
 FORM.addEventListener("submit", (event) => {
   event.preventDefault();
-
+  removeLastLine();
   result = WEIGHT.value / (HEIGHT.value * HEIGHT.value);
   result = Number(result.toFixed(1));
 
@@ -35,15 +34,7 @@ FORM.addEventListener("submit", (event) => {
 
   createEntry(obj);
 
-  // RESULT_DISPLAY.textContent = RESULT_DISPLAY_TEXT + " " + result;
-
-  // if (result > 18.5 && result < 25) {
-  //   RESULT_DISPLAY.style.color = "seagreen";
-  // } else if (result >= 25 && result < 30) {
-  //   RESULT_DISPLAY.style.color = "orangered";
-  // } else {
-  //   RESULT_DISPLAY.style.color = "crimson";
-  // }
+  createLastLine();
 });
 
 function createEntry(object) {
@@ -81,6 +72,7 @@ function createEntry(object) {
   TABLE.append(LIST_ELEMENT);
 }
 
+// HELPER FUNCTIONS
 function colorVerdict(div, weightcase) {
   switch (weightcase) {
     case "under-weight":
@@ -100,4 +92,16 @@ function colorVerdict(div, weightcase) {
 
 function deleteLine(event) {
   event.preventDefault();
+
+  let warning = confirm("Do you really want to delete this line?");
+
+  if (!warning) {
+    return;
+  }
+  event.target.parentNode.remove();
+}
+
+function createLastLine() {
+  const LAST_LINE = document.createElement("li");
+  const RESET_BTN = document.createElement("button");
 }
