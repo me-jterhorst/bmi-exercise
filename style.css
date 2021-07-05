@@ -48,6 +48,7 @@ button:hover {
   display: flex;
   flex-direction: column;
   list-style: none;
+  gap: 1em;
 }
 
 li {
@@ -58,4 +59,9 @@ li {
 
 li:nth-of-type(2n) {
   background: snow;
+}
+
+.btn--del {
+  background: crimson;
+  text-transform: uppercase;
 }

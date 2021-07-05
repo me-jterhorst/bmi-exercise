@@ -17,18 +17,14 @@ FORM.addEventListener("submit", (event) => {
 
   let verdict = "";
 
-  switch (result) {
-    case result < 18.5:
-      verdict = "under-weight";
-      break;
-    case result >= 18.5 && result < 25:
-      verdict = "normal";
-      break;
-    case result >= 25 && result < 30:
-      verdict = "overweight";
-      break;
-    default:
-      verdict = "obese";
+  if (result < 18.5) {
+    verdict = "under-weight";
+  } else if (result >= 18.5 && result < 25) {
+    verdict = "normal";
+  } else if (result >= 25 && result < 30) {
+    verdict = "over-weight";
+  } else {
+    verdict = "obese";
   }
 
   let obj = {
@@ -36,9 +32,10 @@ FORM.addEventListener("submit", (event) => {
     bmi: result,
     verdict,
   };
-  arr.push(obj);
-  console.log(arr);
-  RESULT_DISPLAY.textContent = RESULT_DISPLAY_TEXT + " " + result;
+
+  createEntry(obj);
+
+  // RESULT_DISPLAY.textContent = RESULT_DISPLAY_TEXT + " " + result;
 
   // if (result > 18.5 && result < 25) {
   //   RESULT_DISPLAY.style.color = "seagreen";
@@ -48,3 +45,59 @@ FORM.addEventListener("submit", (event) => {
   //   RESULT_DISPLAY.style.color = "crimson";
   // }
 });
+
+function createEntry(object) {
+  const LIST_ELEMENT = document.createElement("li");
+  const NAME_DIV = document.createElement("div");
+  const BMI_DIV = document.createElement("div");
+  const VERDICT_DIV = document.createElement("div");
+  const DEL_BTN = document.createElement("button");
+
+  // LIST Element
+  LIST_ELEMENT.classList.add("list-entry");
+
+  // NAME
+  NAME_DIV.classList.add("name-wrapper");
+  NAME_DIV.textContent = object.name;
+  LIST_ELEMENT.append(NAME_DIV);
+
+  // BMI
+  BMI_DIV.classList.add("bmi-wrapper");
+  BMI_DIV.textContent = object.bmi;
+  LIST_ELEMENT.append(BMI_DIV);
+
+  // VERDICT
+  colorVerdict(VERDICT_DIV, object.verdict);
+  VERDICT_DIV.classList.add("verdict-wrapper");
+  VERDICT_DIV.textContent = object.verdict;
+  LIST_ELEMENT.append(VERDICT_DIV);
+
+  // DEL
+  DEL_BTN.classList.add("btn--del");
+  DEL_BTN.textContent = "delete";
+  DEL_BTN.addEventListener("click", deleteLine);
+  LIST_ELEMENT.append(DEL_BTN);
+
+  TABLE.append(LIST_ELEMENT);
+}
+
+function colorVerdict(div, weightcase) {
+  switch (weightcase) {
+    case "under-weight":
+      return div.classList.add("underweight");
+      break;
+    case "normal":
+      return div.classList.add("normal");
+      break;
+    case "over-weight":
+      return div.classList.add("overweight");
+      break;
+    case "obese":
+      return div.classList.add("obese");
+      break;
+  }
+}
+
+function deleteLine(event) {
+  event.preventDefault();
+}
