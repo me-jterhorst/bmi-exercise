@@ -11,6 +11,13 @@
     <h1>Calculate your BMI</h1>
     <form>
       <input
+        type="text"
+        name="name"
+        id="name"
+        required
+        placeholder="Your Name"
+      />
+      <input
         type="number"
         name="bodyHeight"
         id="bodyHeight"
@@ -33,6 +40,7 @@
       <button type="submit">Calculate your BMI</button>
     </form>
     <h2>Your BMI is:</h2>
+    <ul class="table"></ul>
   </body>
   <script src="app.js"></script>
 </html>

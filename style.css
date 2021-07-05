@@ -13,8 +13,15 @@ h1 {
 h2 {
   color: seagreen;
 }
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  gap: 10px;
+}
 input {
   padding: 1em 0.3em;
+  min-width: 300px;
 }
 
 button {
@@ -28,4 +35,53 @@ button {
 
 button:hover {
   background: slategray;
+}
+
+.underweight,
+.obese {
+  color: crimson;
+}
+
+.normal {
+  color: springgreen;
+}
+
+.overweight {
+  color: sandybrown;
+}
+
+.table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  gap: 1em;
+}
+
+li {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 0.5em;
+  justify-content: center;
+}
+
+li > * {
+  place-self: center;
+}
+
+li:nth-of-type(2n + 1) {
+  background: hsl(0, 0%, 80%);
+}
+
+.btn--del {
+  background: crimson;
+  text-transform: uppercase;
+}
+
+.btn--reset {
+  background: black;
+  color: white;
+  text-transform: uppercase;
+  grid-column: 4 / 5;
 }
